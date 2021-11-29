@@ -18,12 +18,10 @@ class Group extends Component{
      }
    }
 
-
    ModalCloseOnSuccess(){
       this.setState({
          editGroupModal: !this.state.editGroupModal,
       })
-
    }
 
    editGroupModalToggle(groupToEdit){
@@ -96,7 +94,6 @@ class Group extends Component{
                   <td><Input type="checkbox" defaultChecked={work_names[1]} onChange={() => changeWorksNames(1)} /></td>
                   <td><Input type="checkbox" defaultChecked={work_names[2]} onChange={() => changeWorksNames(2)}/> </td>
                   <td><Input type="checkbox" defaultChecked={work_names[3]} onChange={() => changeWorksNames(3)}/></td>
-
                   <td>
                      <Button onClick={() => this.editGroupModalToggle(g)}>Edit</Button>
                      <Button onClick={() => this.props.deleteGroup(g.id)} >Delete</Button>
@@ -105,16 +102,15 @@ class Group extends Component{
         );
     });
 
-    const user = this.props.users.map((u) => {
-
+   const user = this.props.users.map((u) => {
       return (
-          <option value={u.id}>
-          {u.username}
-          </option>
+         <option value={u.id}>
+         {u.username}
+         </option>
       );         
-  });
-    return(
-       <tbody>
+   });
+   return(
+      <tbody>
          {group}
          <Modal isOpen={this.state.editGroupModal} toggle={this.editGroupModalToggle}>
          <ModalHeader toggle={this.editGroupModalToggle}>
@@ -122,68 +118,65 @@ class Group extends Component{
          </ModalHeader>
          <ModalBody>
          <Form>
-<FormGroup>
-<Label for="name">
-Name
-</Label>
-<Input
-id="name"
-name="name"
-placeholder="Name"
-type="username"
-value={this.state.groupToEditName}
-onChange={e => this.setState({ groupToEditName: e.target.value })}
-/>
-</FormGroup>
-<FormGroup>
- <Label for="description">
-   Description
- </Label>
- <Input
-   id="description"
-   name="description"
-   type="textarea"
-   value={this.state.groupToEditDescription}
-     onChange={e => this.setState({ groupToEditDescription: e.target.value })}
- />
-</FormGroup>
-<FormGroup>
- <Label for="exampleSelectMulti">
-   Select Multiple
- </Label>
- <Input
-   id="exampleSelectMulti"
-   multiple
-   name="selectMulti"
-   type="select"
-   multiple value={this.state.StatusFilter}
-   onChange={(event) => {this.onChangeMulti(event);}}
- >
-  {user}
- </Input>
-</FormGroup>
-</Form>
-</ModalBody>
-<ModalFooter>
-<Button
-  color="primary"
-  onClick={() => {this.props.editGroup(this.state.groupToEditId,
-                                   this.state.groupToEditName,
-                                   this.state.groupToEditDescription,
-                                   this.state.StatusFilter);this.ModalCloseOnSuccess()}}
-  >
-  Edit
-</Button>
-<Button onClick={this.editGroupModalToggle}>
-  Cancel
-</Button>
-</ModalFooter>
-</Modal>
-       </tbody>
-
-
+            <FormGroup>
+               <Label for="name">
+               Name
+               </Label>
+               <Input
+               id="name"
+               name="name"
+               placeholder="Name"
+               type="username"
+               value={this.state.groupToEditName}
+               onChange={e => this.setState({ groupToEditName: e.target.value })}
+               />
+            </FormGroup>
+            <FormGroup>
+            <Label for="description">
+               Description
+            </Label>
+            <Input
+               id="description"
+               name="description"
+               type="textarea"
+               value={this.state.groupToEditDescription}
+               onChange={e => this.setState({ groupToEditDescription: e.target.value })}
+            />
+            </FormGroup>
+            <FormGroup>
+               <Label for="exampleSelectMulti">
+                  Select Multiple
+               </Label>
+               <Input
+                  id="exampleSelectMulti"
+                  multiple
+                  name="selectMulti"
+                  type="select"
+                  multiple value={this.state.StatusFilter}
+                  onChange={(event) => {this.onChangeMulti(event);}}
+               >
+               {user}
+               </Input>
+            </FormGroup>
+         </Form>
+      </ModalBody>
+      <ModalFooter>
+         <Button
+         color="primary"
+         onClick={() => {this.props.editGroup(this.state.groupToEditId,
+                                          this.state.groupToEditName,
+                                          this.state.groupToEditDescription,
+                                          this.state.StatusFilter);this.ModalCloseOnSuccess()}}
+         >
+         Edit
+         </Button>
+         <Button onClick={this.editGroupModalToggle}>
+         Cancel
+         </Button>
+      </ModalFooter>
+   </Modal>
+      </tbody>
     );
-
    }
 }
 
