@@ -191,10 +191,9 @@ class Main extends Component{
           }
         }
       let data = {
-        'id':id,
         'name': name,
         'description':description,
-        'group_users': group_users,
+        'users_to_add': group_users,
       }
       axios.put('http://127.0.0.1:8000/groups/edit-group/' + id + '/',data,config)
       .then(response => {
